@@ -53,15 +53,33 @@
         </section>
         <div class="game-board">
           <div class="button-key">
-            <button class="game-start">
+            <button class="game-start" onclick="picker(this)">
               <img src="./images/icon-paper.svg" alt="Paper" />
             </button>
-            <button class="game-start">
+            <button class="game-start" onclick="picker(this)">
               <img src="./images/icon-scissors.svg" alt="Scissors" />
             </button>
-            <button class="game-start">
+            <button class="game-start" onclick="picker(this)">
               <img src="./images/icon-rock.svg" alt="Rock" />
             </button>
+          </div>
+        </div>
+        <div class="start-game">
+          <div class="player">
+            <h2>you picked</h2>
+            <div class="game-picked">
+              <img src="" alt="Paper" id="player" />
+            </div>
+          </div>
+          <div class="result">
+            <p>you lose</p>
+            <button>play again</button>
+          </div>
+          <div class="computer">
+            <h2>the house picked</h2>
+            <div class="game-picked">
+              <img src="" alt="Paper" id="computer" />
+            </div>
           </div>
         </div>
       </div>

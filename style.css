@@ -25,6 +25,7 @@
 body {
   /* background-color: hsl(214, 47%, 23%); */
   font-family: "Barlow Semi Condensed", sans-serif;
+  height: 100vh;
 }
 button {
   cursor: pointer;
@@ -32,7 +33,7 @@ button {
 div.container {
   background: linear-gradient(180deg, var(--bg-color-1), var(--bg-color-2));
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -130,9 +131,6 @@ div.game-board {
   align-items: center;
 }
 div.button-key {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly; */
   width: 60%;
   height: 100%;
   position: relative;
@@ -170,6 +168,71 @@ button.game-start:nth-child(3) {
 }
 /* The main game styling ends here */
 
+/* The Started Game styling */
+div.start-game {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  width: 100%;
+  display: none;
+}
+div.player,
+div.computer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  height: 100%;
+  width: auto;
+}
+div.player h2,
+div.computer h2,
+div.result p {
+  color: #fff;
+  text-transform: uppercase;
+}
+div.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  /* display: none; */
+  position: relative;
+}
+div.result p {
+  font-size: 3rem;
+}
+div.result button {
+  width: 100%;
+  padding: 15px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  color: red;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+}
+div.game-picked {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.5rem solid var(--paper-bg-2);
+  box-shadow: 0 7px 1px -1px var(--paper-bg-1),
+    inset 0px 6px 3px rgb(162, 165, 167);
+}
+div.game-picked img {
+  width: 40%;
+}
+/* ends here */
+
 /* The rules button styling */
 aside {
   display: flex;
@@ -188,8 +251,12 @@ aside button {
 }
 
 @media only screen and (max-width: 1170px) {
+  div.container {
+    height: initial;
+  }
   div.child-container {
     gap: 100px;
+    width: 90%;
   }
   div.game-board {
     background-size: unset;
@@ -212,12 +279,12 @@ aside button {
   div.container {
     align-items: center;
     padding: 20px 10px;
+    justify-content: space-between;
     gap: 30px;
   }
   div.child-container {
     padding: unset;
     width: 90%;
-    gap: inherit;
   }
   div.button-key {
     width: 80%;
@@ -239,6 +306,23 @@ aside button {
   button.game-start img {
     width: 70%;
     height: 70%;
+  }
+  div.game-picked {
+    width: 180px;
+    height: 180px;
+  }
+  div.start-game {
+    height: 55vh;
+    margin-bottom: 1rem;
+  }
+  div.player,
+  div.computer {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
+  div.result {
+    position: absolute;
+    bottom: 0;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -273,5 +357,20 @@ aside button {
     bottom: 2rem;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+  /* The Started Game styling */
+  div.player h2,
+  div.computer h2,
+  div.result p {
+    font-size: 1rem;
+  }
+
+  div.game-picked {
+    width: 150px;
+    height: 150px;
+    border: 1rem solid var(--paper-bg-2);
+  }
+  div.game-picked img {
+    width: 50%;
   }
 }
