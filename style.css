@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap");
+:root {
+  --scissors-bg-1: hsl(39, 89%, 49%);
+  --scissors-bg-2: hsl(40, 84%, 53%);
+  --paper-bg-1: hsl(230, 89%, 62%);
+  --paper-bg-2: hsl(230, 89%, 65%);
+  --rock-bg-1: hsl(349, 71%, 52%);
+  --rock-bg-2: hsl(349, 70%, 56%);
+  --lizard-bg-1: hsl(261, 73%, 60%);
+  --lizard-bg-2: hsl(261, 73%, 63%);
+  --cyan-bg-1: hsl(189, 59%, 53%);
+  --cyan-bg-2: hsl(189, 59%, 57%);
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+  --bg-color-1: hsl(214, 47%, 23%);
+  --bg-color-2: hsl(214, 49%, 15%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: hsl(214, 47%, 23%); */
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+div.container {
+  background: linear-gradient(180deg, var(--bg-color-1), var(--bg-color-2));
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 30px;
+}
+div.child-container {
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  gap: 50px;
+}
+
+section.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+  border: 2px solid var(--header-outline);
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  border-radius: 15px;
+}
+div.game-logo {
+  width: 100%;
+}
+div.score {
+  padding: 10px 50px;
+  border-radius: 10px;
+  background: #fff;
+  height: 100%;
+}
+div.score p {
+  color: var(--score-text);
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+div.score span {
+  font-size: 3.3rem;
+  font-weight: 700;
+  color: var(--dark-text);
+}
+/* The main game board and its components */
+div.game-board {
+  background: url("./images/bg-triangle.svg") no-repeat center;
+  background-size: 40%;
+  width: 100%;
+  height: 60vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.button-key {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 60%;
+  height: 100%;
+  position: relative;
+  gap: 30px;
+}
+button.game-start {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  position: absolute;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.game-start:nth-child(1) {
+  border: 1.2rem solid var(--paper-bg-2);
+  box-shadow: 0 7px 1px -1px var(--paper-bg-1),
+    inset 0px 6px 3px rgb(162, 165, 167);
+  left: 0;
+}
+button.game-start:nth-child(2) {
+  border: 1.2rem solid var(--scissors-bg-2);
+  box-shadow: 0 7px 1px -1px var(--scissors-bg-1),
+    inset 0px 6px 3px rgb(162, 165, 167);
+  right: 0;
+}
+button.game-start:nth-child(3) {
+  border: 1.2rem solid var(--rock-bg-2);
+  box-shadow: 0 7px 1px -1px var(--rock-bg-1),
+    inset 0px 6px 3px rgb(162, 165, 167);
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+/* The main game styling ends here */
+
+/* The rules button styling */
+aside {
+  display: flex;
+  justify-content: right;
+}
+
+aside button {
+  padding: 10px 30px;
+  outline: none;
+  border: 2px solid white;
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 1170px) {
+  div.child-container {
+    gap: 100px;
+  }
+  div.game-board {
+    background-size: unset;
+  }
+  div.button-key {
+    width: 100%;
+  }
+
+  button.game-start {
+    width: 140px;
+    height: 140px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  div.game-board {
+    height: 40vh;
+  }
+}
+@media only screen and (max-width: 850px) {
+  div.container {
+    align-items: center;
+    padding: 20px 10px;
+    gap: 30px;
+  }
+  div.child-container {
+    padding: unset;
+    width: 90%;
+    gap: inherit;
+  }
+  div.button-key {
+    width: 80%;
+  }
+
+  div.score {
+    padding: 10px 30px;
+  }
+  div.game-board {
+    background-size: 50%;
+    height: 45vh;
+  }
+
+  button.game-start:nth-child(1),
+  button.game-start:nth-child(2),
+  button.game-start:nth-child(3) {
+    border-width: 0.7rem;
+  }
+  button.game-start img {
+    width: 70%;
+    height: 70%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  div.game-board {
+    background-size: 60%;
+    width: 100%;
+    height: 40vh;
+  }
+  button.game-start {
+    width: 100px;
+    height: 100px;
+  }
+}
