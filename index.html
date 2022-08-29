@@ -25,6 +25,22 @@
   </head>
   <body>
     <div class="container">
+      <div class="overlay" onclick="closeOverlay()">
+        <div class="rules-container">
+          <div class="rules-header">
+            <h2>RULES</h2>
+            <img
+              src="./images/icon-close.svg"
+              alt="close"
+              onclick="closeOverlay()"
+              id="close-rules"
+            />
+          </div>
+          <div class="rules-illustrator">
+            <img src="./images/image-rules.svg" alt="rules" />
+          </div>
+        </div>
+      </div>
       <div class="child-container">
         <section class="scoreboard">
           <div class="game-logo">
@@ -47,15 +63,10 @@
               <img src="./images/icon-rock.svg" alt="Rock" />
             </button>
           </div>
-
-          <!-- <div class="player-1">
-            <h4></h4>
-          </div>
-          <div class="player-2"></div> -->
         </div>
       </div>
       <aside>
-        <button type="submit">RULES</button>
+        <button type="submit" onclick="openRules()">RULES</button>
       </aside>
     </div>
     <!-- <footer class="attribution">
@@ -67,4 +78,5 @@
       >.
     </footer> -->
   </body>
+  <script src="index.js"></script>
 </html>
