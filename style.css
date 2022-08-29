@@ -257,14 +257,14 @@ aside button {
     height: 100%;
     border-radius: unset;
     padding: 50px;
-    gap: 60px;
+    gap: 0;
   }
   div.rules-header {
     width: auto;
   }
 
   div.rules-illustrator img {
-    width: 100%;
+    width: 80%;
     height: 80%;
   }
 
