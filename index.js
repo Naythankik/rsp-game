@@ -17,51 +17,70 @@ let player2 = document.querySelector("#computer");
 let result = document.querySelector(".result");
 let resultText = document.querySelector(".fate");
 
-let cardsArray = [
-  "./images/icon-rock.svg",
-  "./images/icon-scissors.svg",
-  "./images/icon-paper.svg",
-];
-
 let picker = (tags) => {
+  let cardsArray = [
+    "./images/icon-rock.svg",
+    "./images/icon-scissors.svg",
+    "./images/icon-paper.svg",
+  ];
+
   let pickedCard = tags.children[0].getAttribute("src");
   player1.setAttribute("src", pickedCard);
-  player1.parentElement.classList.add(tags.value);
+
+  let player1Parent = player1.parentElement.classList;
+  player1Parent.remove(...player1Parent);
+  player1Parent.add("game-picked");
+  player1Parent.add(tags.value);
+
   player1.setAttribute("alt", tags.value);
 
   let player1index = cardsArray.indexOf(player1.getAttribute("src"));
 
   let randCard = Math.floor(Math.random() * cardsArray.length);
-  if (randCard !== player1index) {
-    player2.setAttribute("src", cardsArray[randCard]);
-  } else {
-    if (randCard === 0) {
-      player2.setAttribute("src", cardsArray[randCard + 1]);
-    } else if (randCard === 2) {
-      player2.setAttribute("src", cardsArray[randCard - 1]);
-    } else {
-      player2.setAttribute("src", cardsArray[randCard]);
-    }
+  if (randCard == player1index) {
+    cardsArray.splice(player1index, 1);
+    let newArr = [...cardsArray];
+    randCard = Math.floor(Math.random() * newArr.length);
   }
+  player2.setAttribute("src", cardsArray[randCard]);
 
   let player2Value = player2.getAttribute("src").split("/")[2];
   player2Value = player2Value.split(".")[0];
   player2Value = player2Value.split("-")[1];
 
-  player2.parentElement.classList.add(player2Value);
+  let player2Parent = player2.parentElement.classList;
+  player2Parent.remove(...player2Parent);
+  player2Parent.add("game-picked");
+  player2Parent.add(player2Value);
+
   player2.setAttribute("alt", player2Value);
 
   let score1 = player1.getAttribute("alt");
   let score2 = player2.getAttribute("alt");
 
-  //   let winner = "You Win!";
-  //   let loser = "You Lose!";
-
   let fate = (result) => {
     resultText.innerHTML = `You ${result}!`;
-    resultText.nextElementSibling.classList.add(result);
+    let score = document.querySelector("#score");
+    let restart = resultText.nextElementSibling.classList;
+    if (result == "win") {
+      score.innerHTML = Number(score.innerHTML) + 1;
+      if (restart.contains("lose")) {
+        restart.remove("lose");
+        restart.add("win");
+      } else {
+        restart.add("win");
+      }
+    } else {
+      score.innerHTML = Number(score.innerHTML) - 1;
+
+      if (restart.contains("win")) {
+        restart.remove("win");
+        restart.add("lose");
+      } else {
+        restart.add("lose");
+      }
+    }
   };
-  console.log(resultText.nextElementSibling);
 
   //   The score sheet of the game
   switch (score1) {
@@ -94,3 +113,10 @@ let picker = (tags) => {
   drawDisplay.style.display = "flex";
   result.style.display = "flex";
 };
+
+// When the play again button is clicked
+function playAgain() {
+  gameDisplay.style.display = "flex";
+  drawDisplay.style.display = "none";
+  result.style.display = "none";
+}
