@@ -13,6 +13,7 @@ let drawDisplay = document.querySelector(".start-game");
 let gameDisplay = document.querySelector(".game-board");
 let player1 = document.querySelector("#player");
 let player2 = document.querySelector("#computer");
+let shimmer = document.querySelector(".computer-shimmer");
 
 let result = document.querySelector(".result");
 let resultText = document.querySelector(".fate");
@@ -43,6 +44,8 @@ let picker = (tags) => {
     randCard = Math.floor(Math.random() * newArr.length);
   }
   player2.setAttribute("src", cardsArray[randCard]);
+  shimmer.style.display = "flex";
+  player2.style.display = "none";
 
   let player2Value = player2.getAttribute("src").split("/")[2];
   player2Value = player2Value.split(".")[0];
@@ -51,7 +54,13 @@ let picker = (tags) => {
   let player2Parent = player2.parentElement.classList;
   player2Parent.remove(...player2Parent);
   player2Parent.add("game-picked");
-  player2Parent.add(player2Value);
+
+  setTimeout(() => {
+    shimmer.style.display = "none";
+    player2.style.display = "flex";
+    player2Parent.add(player2Value);
+    result.style.display = "flex";
+  }, 500);
 
   player2.setAttribute("alt", player2Value);
 
@@ -111,7 +120,6 @@ let picker = (tags) => {
 
   gameDisplay.style.display = "none";
   drawDisplay.style.display = "flex";
-  result.style.display = "flex";
 };
 
 // When the play again button is clicked

@@ -43,7 +43,6 @@
 body {
   /* background-color: hsl(214, 47%, 23%); */
   font-family: "Barlow Semi Condensed", sans-serif;
-  height: 100vh;
 }
 button {
   cursor: pointer;
@@ -51,7 +50,7 @@ button {
 div.container {
   background: linear-gradient(180deg, var(--bg-color-1), var(--bg-color-2));
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -188,11 +187,20 @@ button.game-start:nth-child(3) {
 
 /* The Started Game styling */
 div.start-game {
-  display: flex;
   justify-content: space-evenly;
   position: relative;
   width: 100%;
   display: none;
+}
+
+div.computer-shimmer {
+  display: none;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: var(--bg-color-2);
+  position: absolute;
+  opacity: 0.5;
 }
 div.player,
 div.computer {
@@ -203,6 +211,7 @@ div.computer {
   gap: 40px;
   height: 100%;
   width: auto;
+  z-index: 1000;
 }
 div.player h2,
 div.computer h2,
@@ -232,6 +241,7 @@ div.result button {
   font-weight: 600;
 }
 div.game-picked {
+  position: relative;
   width: 240px;
   height: 240px;
   border-radius: 50%;
@@ -267,7 +277,7 @@ aside button {
 
 @media only screen and (max-width: 1170px) {
   div.container {
-    height: initial;
+    height: 100%;
   }
   div.child-container {
     gap: 100px;
@@ -276,9 +286,6 @@ aside button {
   div.game-board {
     background-size: unset;
   }
-  div.button-key {
-    width: 100%;
-  }
 
   button.game-start {
     width: 140px;
@@ -286,12 +293,16 @@ aside button {
   }
 }
 @media only screen and (max-width: 1000px) {
+  div.container {
+    height: 100vh;
+  }
   div.game-board {
     height: 40vh;
   }
 }
 @media only screen and (max-width: 850px) {
   div.container {
+    height: 100vh;
     align-items: center;
     padding: 20px 10px;
     justify-content: space-between;
@@ -339,6 +350,16 @@ aside button {
     position: absolute;
     bottom: 0;
   }
+  div.rules-container {
+    width: 90%;
+  }
+  div.rules-header {
+    width: 80%;
+  }
+  div.rules-illustrator img {
+    width: 100%;
+    height: 100%;
+  }
 }
 @media only screen and (max-width: 500px) {
   div.game-board {
@@ -356,15 +377,16 @@ aside button {
     height: 100%;
     border-radius: unset;
     padding: 50px;
-    gap: 0;
+    gap: 7rem;
   }
   div.rules-header {
     width: auto;
   }
-
-  div.rules-illustrator img {
-    width: 80%;
-    height: 80%;
+  div.rules-illustrator {
+    justify-content: unset;
+    display: unset;
+    width: initial;
+    height: initial;
   }
 
   img#close-rules {
@@ -384,6 +406,10 @@ aside button {
     width: 150px;
     height: 150px;
     border: 1rem solid var(--bg-2);
+  }
+  div.computer-shimmer {
+    width: 150px;
+    height: 150px;
   }
   div.game-picked img {
     width: 50%;
